@@ -8,6 +8,7 @@ public class HelloWorld {
     }
     public void hello(){
         System.out.println("Hello:"+ name);
+        System.out.println("Aha!:"+ name);
     }
     public HelloWorld(){
         System.out.println("HelloWorld'constructor");
