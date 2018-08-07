@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans  
+http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+http://www.springframework.org/schema/context  
+http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+    
+    <!--上面的xsd最好和当前使用的Spring版本号一致,如果换了Spring版本,这个最好也跟着改-->
+
+    <!-- 引入属性文件 放在最开头,在使用spring之前就引入,里面的变量才能被引用-->
+
+    <!--
+    引入属性文件也可以用这种写法
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:config.properties" />
+    </bean>
+    -->
+
+    <!-- 自动扫描(需要自动注入的类，对于那些类上有注解：@Repository、@Service、@Controller、@Component都进行注入) -->
+    <!--因为 Spring MVC 是 Spring 的子容器，所以我们在 Spring MVC 的配置中再指定扫描 Controller 的注解，这里是父容器的配置地方-->
+    <!--注解注入的相关材料可以看：-->
+    <!--http://blog.csdn.net/u012763117/article/details/17253849-->
+    <!--http://casheen.iteye.com/blog/295348-->
+    <!--http://blog.csdn.net/zhang854429783/article/details/6785574-->
+
+    <bean id="helloworld1" class="com.spring.beans.HelloWorld">
+        <!--属性注入通过使用setter方法注入bean的属性值或依赖的对象 -->
+        <!--属性注入使用<property>元素，使用name属性指定bean的属性名称，vale属性或<value>子节点指定属性值-->
+        <!--属性注入是实际应用中最常用的注入方式-->
+        <property name="name" value="Spring1">
+            <!--使用props和prop子节点来为name属性赋值-->
+        </property>
+    </bean>
+    <bean id="helloworld2" class="com.spring.beans.HelloWorld">
+        <property name="name" value="Spring2"></property>
+    </bean>
+
+    <!--通过构造方法来配置bean的属性-->
+    <bean id="car" class="com.spring.beans.Car">
+        <constructor-arg value="audi"></constructor-arg>
+        <constructor-arg value="shanghai"></constructor-arg>
+        <constructor-arg value="300000"></constructor-arg>
+    </bean>
+
+    <!--通过p命名空间为bean的属性复制，需要先导入p命名空间-->
+    <!--<bean id="person5" class="com.spring,beans.collections.Person" p:age="30"
+      p:name="Queen" p:cars-ref="cars" au>
+
+    </bean>-->
+</beans>
