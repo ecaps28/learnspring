@@ -7,7 +7,7 @@ public class HelloWorld {
         this.name=name;
     }
     public void hello(){
-        System.out.println("hello:"+ name);
+        System.out.println("Aha!:"+ name);
     }
     public HelloWorld(){
         System.out.println("HelloWorld'constructor");
